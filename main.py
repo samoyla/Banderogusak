@@ -18,7 +18,8 @@ COLOR_RED = (255, 0, 0)
 COLOR_GREEN = (0, 255, 0)
 COLOR_BLUE = (0, 0, 255)
 PLAYER_SIZE = (20, 20)
-ENEMY_SIZE = (30, 30)
+ENEMY_SIZE = (150, 50)
+BONUS_SIZE = (80, 130)
 
 main_display = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -44,12 +45,14 @@ player_move_right = [4, 0]
 
 def create_enemy():
     enemy = pygame.image.load('enemy.png')
+    enemy = pygame.transform.scale(enemy, ENEMY_SIZE)
     enemy_rect = pygame.Rect(WIDTH, random.randint(0 + enemy.get_height(), HEIGHT - enemy.get_height()), *ENEMY_SIZE)
     enemy_move = [random.randint(-8, -4), 0]
     return [enemy, enemy_rect, enemy_move]
 
 def create_bonus():
     bonus = pygame.image.load('bonus.png')
+    bonus = pygame.transform.scale(bonus, BONUS_SIZE)
     bonus_rect = pygame.Rect(random.randint(0 + bonus.get_width(), WIDTH - bonus.get_width()), 0, *ENEMY_SIZE)
     bonus_move = [0, random.randint(4, 8)]
     return [bonus, bonus_rect, bonus_move]
